@@ -1,12 +1,12 @@
 On windows
 
-g++ main.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceGSV.cpp NMEASentenceGSA.cpp NMEASentenceRMC.cpp -o parser.exe -std=c++11
+g++ main.cpp MYNMEAParser.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceRMC.cpp NMEASentenceVEL.cpp NMEASentenceATT.cpp NMEASentenceGPS.cpp NMEASentenceSTS.cpp NMEASentenceSEN.cpp -o parser.exe -std=c++11
 
 .\parser.exe
 
 
 On linux
 
-g++ main.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceGSV.cpp NMEASentenceGSA.cpp NMEASentenceRMC.cpp -o parser -std=c++11
+g++ main.cpp MYNMEAParser.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceRMC.cpp NMEASentenceVEL.cpp NMEASentenceATT.cpp NMEASentenceGPS.cpp NMEASentenceSTS.cpp NMEASentenceSEN.cpp -o parser -std=c++11
 
 sudo ./parser

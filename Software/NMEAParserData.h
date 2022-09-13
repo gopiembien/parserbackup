@@ -1,47 +1,17 @@
-/*
-* MIT License
-*
-*  Copyright (c) 2018 VisualGPS, LLC
-*
-*  Permission is hereby granted, free of charge, to any person obtaining a copy
-*  of this software and associated documentation files (the "Software"), to deal
-*  in the Software without restriction, including without limitation the rights
-*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*  copies of the Software, and to permit persons to whom the Software is
-*  furnished to do so, subject to the following conditions:
-*
-*  The above copyright notice and this permission notice shall be included in all
-*  copies or substantial portions of the Software.
-*
-*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-*  SOFTWARE.
-*
-*/
-
-#pragma once
+#ifndef _NMEAPARSERDATA_H_
+#define _NMEAPARSERDATA_H_
 #include <cstddef>
 #include <stdint.h>
 #include <time.h>
 
-///
 /// Used to identify unused function parameters. 
-///
 #define UNUSED_PARAM(x) (void)(x)
 
-///
 /// \class CNMEAParser
 /// \brief This class will parse NMEA data, store its data and report that it has received data
-///
 namespace CNMEAParserData {
 
-	///
 	/// Error types. Most methods will return one of the follow error types.
-	///
 	enum ERROR_E {
 		ERROR_OK = 0,															///< No error, operation successful
 		ERROR_FAIL = 1,															///< Error, operation failed
@@ -49,11 +19,11 @@ namespace CNMEAParserData {
 		ERROR_CHECKSUM = 3,														///< Error, packet checksum mismatch
 		ERROR_RX_BUFFER_OVERFLOW,												///< Error, receive packet buffer overflow
 		ERROR_CMD_BUFFER_OVERFLOW,												///< Error, receive command buffer overflow
+		ERROR_PORT_CLOSED,														///< Error, Port closed
+		ERROR_FILE_OPEN_FAILED,													///< Error, File open failed
 	};
 
-	//
 	// Constants
-	//
 	static const uint32_t		c_uMaxCmdLen = 32;								///< maximum command length (NMEA address)
 	static const uint32_t		c_uMaxDataLen = 256;							///< maximum command length (NMEA address)
 	static const int			c_nMaxConstellation = 64;						///< This is a max number if satellites for a constellation. NOTE: This does not reflect the actual constellation count for a given GPS/GNSS system
@@ -134,6 +104,7 @@ namespace CNMEAParserData {
 		TID_ZC = (uint16_t)'Z' << 8 | (uint16_t)'C',							///< ZC Timekeeper - Chronometer
 		TID_ZQ = (uint16_t)'Z' << 8 | (uint16_t)'Q',							///< ZQ Timekeeper - Quartz
 		TID_ZV = (uint16_t)'Z' << 8 | (uint16_t)'V',							///< ZV Timekeeper - Radio Update, WWV or WWVH
+		TID_AO = (uint16_t)'A' << 8 | (uint16_t)'O',
 	};
 
 	///
@@ -151,22 +122,17 @@ namespace CNMEAParserData {
 		GQ_SIMULATOR_MODE = 8,													///< Simulation mode
 	};
 
-	typedef struct _SAT_INFO_T {
-		double		dAzimuth;													///< Satellite Azimuth
-		double		dElevation;													///< Satellite Elevation
-		int			nPRN;														///< Satellite Psudo Random Number (THis is the ID and not the satellite vehicle number)
-		int			nSNR;														///< Signal to Noise Ration - this is the signal quality
-	} SAT_INFO_T;																///< Satellite information structure for a single satellite
-
-	enum ACTIVE_SAT_AUTO_MODE_E {
-		ASAM_MANUAL = 'M',														///< Manual, forced to operate in2D or 2D mode
-		ASAM_AUTO = 'A',														///< Automatic, allowed to automatically switch 2D/3D
+	enum FIX_STATUS_E
+	{
+		NO_FIX = 0,
+		FIX	= 1,
 	};
 
-	enum ACTIVE_SAT_MODE_E {
-		ASM_FIX_NOT_AVAILABLE = 1,												///< Fix not available
-		ASM_2D = 2,																///< 2D
-		ASM_3D = 3,																///< 3D
+	enum FIX_TYPE_E
+	{
+		GNSS_NO_FIX = 0,
+		GNSS_FIX = 1,
+		SBAC_FIX = 2,
 	};
 
 	///
@@ -187,29 +153,6 @@ namespace CNMEAParserData {
 		int				m_nDifferentialID;										///< Differential reference station ID, 0000-1023
 		double			m_dVertSpeed;											///< Derived vertical speed (THIS IS NOT PART OF THE NMEA SPECIFICATION. It is derived during parsing)
 	} GGA_DATA_T;
-
-	/// 
-	/// 
-	///
-	typedef struct _GSV_DATA_T {
-		int									nTotalNumberOfSentences;			///< Total number of GSV sentences to build up satellites monitored
-		int									nSentenceNumber;					///< Current sentence number
-		int									nSatsInView;						///< Number of satellites in view
-		CNMEAParserData::SAT_INFO_T			SatInfo[c_nMaxConstellation];		///< Satellite data
-	} GSV_DATA_T;
-
-	///
-	/// GNSS DOP and active satellites
-	///
-	typedef struct _GSA_DATA_T {
-		CNMEAParserData::ACTIVE_SAT_AUTO_MODE_E	nAutoMode;										///< Auto/manual mode
-		CNMEAParserData::ACTIVE_SAT_MODE_E		nMode;											///< Fix, 2D/3D mode
-		int										pnPRN[CNMEAParserData::c_nMaxConstellation];	///< Tracked satellites
-		double									dPDOP;											///< PDOP
-		double									dHDOP;											///< HDOP
-		double									dVDOP;											///< VDOP
-		unsigned int							uGGACount;										///< GGA count - this is used to determine if we get more than one GSA packet per position update. If we do, then the receiver has more satellite data to share.
-	} GSA_DATA_T;																				///< GNSS DOP and active satellites
 
 	///
 	/// RMC Status field
@@ -240,4 +183,62 @@ namespace CNMEAParserData {
 	    double			m_dMagneticVariation;									///< Magnetic Variation
 
 	} RMC_DATA_T;
+
+	typedef struct _VEL_DATA_T 
+	{
+		double m_dVelocityXAxis;
+		double m_dVelocityYAxis;
+		double m_dVelocityZAxis;
+		double m_dVelocityNorth;
+		double m_dVelocityEast;
+		double m_dVelocityDown;
+	} VEL_DATA_T;
+	
+	typedef struct _ATT_DATA_T
+	{
+		double m_dRollAngle;
+		double m_dPitchAngle;
+		double m_dHeadingAngle;
+		double m_dQ0;
+		double m_dQ1;
+		double m_dQ2;
+		double m_dQ3;
+		int	m_nInsMode;
+	}ATT_DATA_T;
+
+	typedef struct _GPS_DATA_T
+	{
+		FIX_STATUS_E  m_nFixStatus;
+		FIX_TYPE_E  m_nFixType;
+		int m_nNoOfSatellites;
+		double m_dLatitude;
+		double m_dLongitude;
+		double m_dAltitude;
+		double m_dSpeedOverGround;
+		double m_dCourseOverGround;
+		double m_dDilutionOfPrecision;
+	}GPS_DATA_T;
+
+	typedef struct _STS_DATA_T
+	{
+		time_t m_timeSeconds;
+		int m_nMSEC;
+		long m_lInsStatus;
+		long m_lHardwareStatus;
+	}STS_DATA_T;
+
+	typedef struct _SEN_DATA_T
+	{
+		double m_dAX;
+		double m_dAY;
+		double m_dAZ;
+		double m_dBRX;
+		double m_dBRY;
+		double m_dBRZ;
+		double m_dERR;
+		double m_dERP;
+		double m_dERY;
+	}SEN_DATA_T;
 };
+
+#endif

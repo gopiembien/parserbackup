@@ -1,29 +1,5 @@
-/*
-* MIT License
-*
-*  Copyright (c) 2018 VisualGPS, LLC
-*
-*  Permission is hereby granted, free of charge, to any person obtaining a copy
-*  of this software and associated documentation files (the "Software"), to deal
-*  in the Software without restriction, including without limitation the rights
-*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*  copies of the Software, and to permit persons to whom the Software is
-*  furnished to do so, subject to the following conditions:
-*
-*  The above copyright notice and this permission notice shall be included in all
-*  copies or substantial portions of the Software.
-*
-*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-*  SOFTWARE.
-*
-*/
-
-#pragma once
+#ifndef _NMEAPARSERPACKET_H_
+#define _NMEAPARSERPACKET_H_
 #include <cstddef>
 #include <stdint.h>
 #include "NMEAParserData.h"
@@ -89,29 +65,13 @@ public:
 	CNMEAParserPacket();
 	~CNMEAParserPacket();
 
-	///
-	/// \brief Parses pData for NMEA data.
-	///
-	/// This method will parse pData for NMEA data.
-	/// 
-	/// \param pData Pointer to buffer to parse
-	/// \param nBufferSize Number of bytes in pData to process.
-	/// \return CNMEAParserData::ERROR_E, if successful, ERROR_OK is returned.
-	///
 	CNMEAParserData::ERROR_E ProcessNMEABuffer(ceSerial &com);
 
-	///
-	/// \brief Reset the parser.
-	///
 	/// A reset will restart the parser to start to look for the start of message.
-	///
 	void Reset(void);
 
 	///
 	/// \brief This method is called whenever there is a parsing error.
-	///
-	/// Redefine this method to capture errors.
-	///
 	/// \param pCmd Pointer to NMEA command that caused the error. Please note that this parameter may be NULL of not completely defined. Use with caution.
 	///
     virtual void OnError(CNMEAParserData::ERROR_E nError, char *pCmd) { UNUSED_PARAM(nError); UNUSED_PARAM(pCmd);}
@@ -137,3 +97,5 @@ protected:
 	///
 	virtual void TimeTag(void) {}
 };
+
+#endif

@@ -1,15 +1,3 @@
-// File: ceSerial.h
-// Description: ceSerial communication class for Windows and Linux
-// WebSite: http://cool-emerald.blogspot.sg/2017/05/serial-port-programming-in-c-with.html
-// MIT License (https://opensource.org/licenses/MIT)
-// Copyright (c) 2018 Yan Naing Aye
-
-// References
-// https://en.wikibooks.org/wiki/Serial_Programming/termios
-// http://www.silabs.com/documents/public/application-notes/an197.pdf
-// https://msdn.microsoft.com/en-us/library/ff802693.aspx
-// http://www.cplusplus.com/forum/unices/10491/
-
 #ifndef CESERIAL_H
 #define CESERIAL_H
 #include <string>
