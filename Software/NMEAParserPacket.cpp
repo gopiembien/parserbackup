@@ -20,15 +20,20 @@ CNMEAParserData::ERROR_E CNMEAParserPacket::ProcessNMEABuffer(ceSerial &com)
 	while(true)
 	{	
 		bool successFlag;
-		if(!com.IsOpened())
+		char cData = com.ReadChar(successFlag);
+		#ifdef ceWINDOWS
+		if (!com.comportcheck())
 		{
+			printf("port is closed\r\n");
 			break;
 		}
-		char cData = com.ReadChar(successFlag);
+		#else
 		if(!successFlag)
 		{
-			continue;
+			printf("port is closed\r\n");
+			break;
 		}
+		#endif
 		switch (m_nState)
 		{
 			// Search for start of message '$'

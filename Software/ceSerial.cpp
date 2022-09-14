@@ -406,6 +406,18 @@ bool ceSerial::GetCD(bool& success)
 	return r;
 }
 
+bool ceSerial::comportcheck()
+{
+    DCB dcbOri;
+    bool fSuccess;
+    fSuccess = GetCommState(hComm, &dcbOri);
+    if (!fSuccess)
+    {
+        return false;
+    }
+    return true;
+}
+
 #else  //for POSIX
 
 long ceSerial::Open(void) {
@@ -431,7 +443,7 @@ long ceSerial::Open(void) {
 	settings.c_cc[VMIN] = 1;
 	settings.c_cc[VTIME] = 0;
 
-	fd = open(port.c_str(), O_RDWR | O_NONBLOCK);
+	fd = open(port.c_str(), O_RDWR);
 	if (fd == -1) {
 		return -1;
 	}
@@ -441,7 +453,7 @@ long ceSerial::Open(void) {
 	tcsetattr(fd, TCSANOW, &settings);
 
 	int flags = fcntl(fd, F_GETFL, 0);
-	fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+	fcntl(fd, F_SETFL, flags);
 
 	return 0;
 }

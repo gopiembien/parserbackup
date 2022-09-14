@@ -56,6 +56,7 @@ public:
 	char GetParity();
 	void SetStopBits(float nbits);
 	float GetStopBits();
+	bool comportcheck();
 };
 
 #endif // CESERIAL_H
