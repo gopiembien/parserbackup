@@ -3,8 +3,26 @@
 
 #include <stdio.h>
 #include <string.h>
+#include<bits/stdc++.h>
+#include <nlohmann/json.hpp>
+#include <fstream>
 #include "NMEAParser.h"
 #include "ceSerial.h"
+using json = nlohmann::json;
+class NMEAData
+{
+	private:
+		static NMEAData* instance;
+		NMEAData();
+	public:
+		static NMEAData* getInstance();
+		double m_latitude;
+		double m_longitude;
+		double m_altitude;
+		double m_rollangle;
+		double m_pitchangle;
+		double m_headingangle;
+};
 
 /// \class MyParser
 /// \brief child class of CNMEAParser which will redefine notification calls from the parent class.

@@ -1,10 +1,11 @@
 #include "MYNMEAParser.h"
 
+NMEAData *NMEAData::instance = NULL;
+
 int main() 
 {
 	FILE *fileptr;
-
-	fileptr = fopen("outfile.csv", "w");
+	fileptr = fopen("gpsdata.csv", "w");
 	if(fileptr == NULL)
 	{
 		printf("Error Opening file.\n");
@@ -16,7 +17,7 @@ int main()
 	while(1)
 	{
 		#ifdef ceWINDOWS
-		ceSerial com("\\\\.\\COM8",115200,8,'N',1); // Windows
+		ceSerial com("\\\\.\\COM11",115200,8,'N',1); // Windows
 		#else
 		ceSerial com("/dev/ttyUSB0",115200,8,'N',1); // Linux
 		#endif
