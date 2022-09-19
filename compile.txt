@@ -4,6 +4,7 @@ g++ main.cpp MYNMEAParser.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp N
 
 .\parser.exe
 
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 
 On linux
 
