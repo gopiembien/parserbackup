@@ -1,0 +1,24 @@
+add_library(parserlib 
+    ceSerial.cpp 
+    NMEAParserPacket.cpp 
+    NMEAParser.cpp 
+    NMEASentenceBase.cpp 
+    NMEASentenceGGA.cpp 
+    NMEASentenceRMC.cpp 
+    NMEASentenceVEL.cpp 
+    NMEASentenceATT.cpp 
+    NMEASentenceGPS.cpp 
+    NMEASentenceSTS.cpp 
+    NMEASentenceSEN.cpp
+    ceSerial.h 
+    NMEAParserPacket.h
+    NMEAParser.h
+    NMEASentenceBase.h 
+    NMEASentenceGGA.h 
+    NMEASentenceRMC.h 
+    NMEASentenceVEL.h 
+    NMEASentenceATT.h 
+    NMEASentenceGPS.h 
+    NMEASentenceSTS.h 
+    NMEASentenceSEN.h
+    )

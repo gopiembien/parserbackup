@@ -23,17 +23,21 @@ CNMEAParserData::ERROR_E MyNMEAParser::ProcessRxCommand(char *pCmd, char *pData)
 {
     // Call base class to process the command
     CNMEAParser::ProcessRxCommand(pCmd, pData);
-    FILE *fileptr;
-    fileptr = fopen("gpsdata.csv", "a");
-    if(fileptr == NULL)
+    FILE* fileptr;
+    errno_t err;
+    err = fopen_s(&fileptr, "gpsdata.csv", "a");
+    if (err != 0)
 	{
 		printf("Error Opening file.\n");
 		return CNMEAParserData::ERROR_FILE_OPEN_FAILED;
 	}
     
     time_t my_time = time(NULL);
-    char *ctime_no_newline;
-    ctime_no_newline = strtok(ctime(&my_time), "\n");
+    char* ctime_no_newline;
+    char dates[26];
+    ctime_s(dates, sizeof(dates), &my_time);
+    char* date = dates;
+    ctime_no_newline = strtok_s(date, "\n", &date);
     NMEAData* nmeadata = NMEAData::getInstance();
     printf("Cmd: %s     time : %s \nData: %s\n", pCmd,ctime_no_newline, pData);
 

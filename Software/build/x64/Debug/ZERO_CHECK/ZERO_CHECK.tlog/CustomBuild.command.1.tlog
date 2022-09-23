@@ -1,0 +1,10 @@
+^D:\FTIR\CODE\GPSPARSER\SOFTWARE\BUILD\CMAKEFILES\0A50BCE8D495A85F20DBE1926F659699\GENERATE.STAMP.RULE
+setlocal
+C:\cmake\bin\cmake.exe -SD:/FTIR/CODE/GPSParser/Software -BD:/FTIR/CODE/GPSParser/Software/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/FTIR/CODE/GPSParser/Software/build/GPSParser.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

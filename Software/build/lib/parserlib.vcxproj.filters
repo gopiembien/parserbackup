@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\ceSerial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEAParserPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEAParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceGGA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceRMC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceVEL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceATT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceGPS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceSTS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceSEN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\ceSerial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEAParserPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEAParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceGGA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceRMC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceVEL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceATT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceGPS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceSTS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\FTIR\CODE\GPSParser\Software\lib\NMEASentenceSEN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\FTIR\CODE\GPSParser\Software\lib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3771AEBD-DF3E-38F7-A689-3CCA8430483F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{04C5A046-6FAE-3148-B269-1F6A429971A1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

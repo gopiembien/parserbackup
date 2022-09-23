@@ -1,9 +1,10 @@
 #ifndef _MYNMEAPARSER_H_
 #define _MYNMEAPARSER_H_
 
+#include <iostream>
 #include <stdio.h>
 #include <string.h>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include "NMEAParser.h"

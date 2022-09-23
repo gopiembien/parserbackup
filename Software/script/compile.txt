@@ -1,0 +1,18 @@
+On windows
+
+g++ main.cpp MYNMEAParser.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceRMC.cpp NMEASentenceVEL.cpp NMEASentenceATT.cpp NMEASentenceGPS.cpp NMEASentenceSTS.cpp NMEASentenceSEN.cpp -o parser.exe -std=c++11
+
+.\parser.exe
+
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+cmake -S ../ -B . -G "Visual Studio 17 2022"
+cmake --build . 
+
+On linux
+
+g++ main.cpp MYNMEAParser.cpp ceSerial.cpp NMEAParserPacket.cpp NMEAParser.cpp NMEASentenceBase.cpp NMEASentenceGGA.cpp NMEASentenceRMC.cpp NMEASentenceVEL.cpp NMEASentenceATT.cpp NMEASentenceGPS.cpp NMEASentenceSTS.cpp NMEASentenceSEN.cpp -o parser -std=c++11
+
+sudo ./parser
+
+cmake ../
+make

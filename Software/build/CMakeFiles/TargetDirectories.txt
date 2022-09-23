@@ -1,0 +1,4 @@
+D:/FTIR/CODE/GPSParser/Software/build/CMakeFiles/ALL_BUILD.dir
+D:/FTIR/CODE/GPSParser/Software/build/CMakeFiles/ZERO_CHECK.dir
+D:/FTIR/CODE/GPSParser/Software/build/lib/CMakeFiles/parserlib.dir
+D:/FTIR/CODE/GPSParser/Software/build/source/CMakeFiles/GPSParser.dir
